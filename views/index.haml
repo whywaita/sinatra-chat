@@ -1,0 +1,21 @@
+!!!
+-# %TagName(html)で記述
+%html{:lang => "ja"}
+  %head
+    -# 「%TagName= @EmmbeddingName」で出力
+    %title= @title
+  %body
+    -# 「%TagName #{@EmmbeddingName}で出力」
+    %h1 #{@title}
+    %p= @text
+    - @bbs_data.each do |row|
+      %p= row
+      - row.each do |element|
+        %p= element
+
+    %form{:method => "POST", :action => '/request_print'}
+      %input{:type => "hidden", :name => "_method", :value => "PUT"}
+      %input{:type => "text", :name => "name"}
+      %input{:type => "text", :name => "title"}
+      %input{:type => "text", :name => "message"}
+      %input{:type => "submit"}

@@ -1,0 +1,16 @@
+!!!
+
+%html{:lang => "ja"}
+	%head
+		%title Request Print
+	%body
+		%p リクエストのHTTPメソッドと実行パス
+		%p
+			= "method = #{@request_method}"
+			= "url = #{@request_url}"
+			= "path = #{@request_path}"
+		%p 入力フォームのテキストボックスから入力されたデータ
+		%p
+			= "TextBox(name) = #{@name}"
+			= "TextBox(title) = #{@title}"
+			= "TextBox(message) = #{@message}"
