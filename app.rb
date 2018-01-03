@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'sinatra'
-require 'sinatra/reloader'
 require 'haml'
 require 'csv'
 
