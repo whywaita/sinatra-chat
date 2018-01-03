@@ -15,10 +15,6 @@ get '/' do
 end
 
 post '/' do
-  @title = "sinatra chat"
-  @text = "Hello haml"
-  @bbs_data = CSV.read("resources/bbs_data.csv")
-
   CSV.open("resources/bbs_data.csv", "a") do |f|
     f << [params[:name], params[:title], params[:message]]
   end
