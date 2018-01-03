@@ -14,7 +14,7 @@ get '/' do
   haml :index
 end
 
-put '/' do
+post '/' do
   @title = "sinatra chat"
   @text = "Hello haml"
   @bbs_data = CSV.read("resources/bbs_data.csv")
