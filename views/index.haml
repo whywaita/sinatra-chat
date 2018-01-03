@@ -9,7 +9,6 @@
 
     %form{:method => "POST", :action => '/bbs'}
       %input{:type => "hidden", :name => "_method", :value => "POST"}
-      %input{:type => "text", :name => "title", :placeholder => "title"}
       %input{:type => "text", :name => "message", :placeholder => "message"}
       %input{:type => "submit"}
 
@@ -17,7 +16,6 @@
     %thead.thead-inverse
       %tr
         %th Name
-        %th Title
         %th Message
         %th Time
     %tbody
@@ -26,4 +24,3 @@
           %td= row[0]
           %td= row[1]
           %td= row[2]
-          %td= row[3]
