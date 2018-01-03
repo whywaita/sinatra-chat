@@ -20,7 +20,7 @@
         %th Title
         %th Message
     %tbody
-      - @bbs_data.each do |row|
+      - @bbs_data.reverse_each do |row|
         %tr
           %td= row[0]
           %td= row[1]
