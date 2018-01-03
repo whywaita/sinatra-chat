@@ -5,7 +5,6 @@
     %link{:rel => :stylesheet, :type => :"text/css", :href => "https://bootswatch.com/4/cosmo/bootstrap.min.css"}
   %body
     %h1 #{@title}
-    %h2~ @text
 
     %form{:method => "POST", :action => '/login'}
       %input{:type => "hidden", :name => "_method", :value => "POST"}

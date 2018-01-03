@@ -60,7 +60,6 @@ get '/bbs' do
   end
 
   @title = "sinatra chat"
-  @text = "Hello haml"
   @bbs_data = CSV.read("resources/bbs_data.csv")
 
   haml :index
