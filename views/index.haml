@@ -19,9 +19,11 @@
         %th Name
         %th Title
         %th Message
+        %th Time
     %tbody
       - @bbs_data.reverse_each do |row|
         %tr
           %td= row[0]
           %td= row[1]
           %td= row[2]
+          %td= row[3]
