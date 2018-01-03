@@ -14,7 +14,7 @@ Warden::Strategies.add :login_test do
   end
 
   def authenticate!
-    if params != ""
+    if params["name"] != ""
       user = {
         :name => params["name"],
         :password => params["password"]
@@ -48,6 +48,10 @@ end
 get "/logout" do
   request.env["warden"].logout
   redirect "/"
+end
+
+post "/unauthenticated" do
+  haml :fail_login
 end
 
 get '/bbs' do
