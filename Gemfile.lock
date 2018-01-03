@@ -1,10 +1,18 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    haml (5.0.4)
-      temple (>= 0.8.0)
+    ast (2.3.0)
+    escape_utils (1.2.1)
+    faml (0.8.1)
+      escape_utils
+      haml_parser (>= 0.4.0)
+      parser
+      temple (>= 0.7.0)
       tilt
+    haml_parser (0.4.1)
     mustermann (1.0.1)
+    parser (2.4.0.2)
+      ast (~> 2.3)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -22,7 +30,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  haml
+  faml
   sinatra
   warden
 
