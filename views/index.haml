@@ -4,18 +4,27 @@
   %head
     -# 「%TagName= @EmmbeddingName」で出力
     %title= @title
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "https://bootswatch.com/4/cosmo/bootstrap.min.css"}
   %body
-    -# 「%TagName #{@EmmbeddingName}で出力」
     %h1 #{@title}
-    %p= @text
-    - @bbs_data.each do |row|
-      %p= row
-      - row.each do |element|
-        %p= element
+    %h2~ @text
 
-    %form{:method => "POST", :action => '/request_print'}
+    %form{:method => "POST", :action => '/'}
       %input{:type => "hidden", :name => "_method", :value => "PUT"}
-      %input{:type => "text", :name => "name"}
-      %input{:type => "text", :name => "title"}
-      %input{:type => "text", :name => "message"}
+      %input{:type => "text", :name => "name", :placeholder => "name"}
+      %input{:type => "text", :name => "title", :placeholder => "title"}
+      %input{:type => "text", :name => "message", :placeholder => "message"}
       %input{:type => "submit"}
+
+  %table.table
+    %thead.thead-inverse
+      %tr
+        %th Name
+        %th Title
+        %th Message
+    %tbody
+      - @bbs_data.each do |row|
+        %tr
+          %td= row[0]
+          %td= row[1]
+          %td= row[2]
