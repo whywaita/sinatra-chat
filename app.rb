@@ -59,7 +59,7 @@ get '/bbs' do
     redirect "/"
   end
 
-  @title = "sinatra chat"
+  @title = "Sinatra chat"
   @bbs_data = CSV.read("resources/bbs_data.csv")
 
   haml :index
