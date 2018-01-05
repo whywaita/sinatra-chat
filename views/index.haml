@@ -1,21 +1,28 @@
 !!!
--# %TagName(html)で記述
 %html{:lang => "ja"}
   %head
-    -# 「%TagName= @EmmbeddingName」で出力
     %title= @title
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "https://bootswatch.com/4/cosmo/bootstrap.min.css"}
   %body
-    -# 「%TagName #{@EmmbeddingName}で出力」
-    %h1 #{@title}
-    %p= @text
-    - @bbs_data.each do |row|
-      %p= row
-      - row.each do |element|
-        %p= element
+    %h1
+      %a{ :href => '/' }
+        #{@title}
+  %h2 Login User: #{request.env["warden"].user[:name]}
 
-    %form{:method => "POST", :action => '/request_print'}
-      %input{:type => "hidden", :name => "_method", :value => "PUT"}
-      %input{:type => "text", :name => "name"}
-      %input{:type => "text", :name => "title"}
-      %input{:type => "text", :name => "message"}
-      %input{:type => "submit"}
+  %form{:method => "POST", :action => '/bbs'}
+    %input{:type => "hidden", :name => "_method", :value => "POST"}
+    %input{:type => "text", :name => "message", :placeholder => "message"}
+    %input{:type => "submit"}
+
+  %table.table
+    %thead.thead-inverse
+      %tr
+        %th Name
+        %th Message
+        %th Time
+    %tbody
+      - @bbs_data.reverse_each do |row|
+        %tr
+          %td= row[0]
+          %td= row[1]
+          %td= row[2]
