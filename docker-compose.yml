@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "4567:4567"
+        #     depends_on:
+        #       - redis
+    volumes:
+      - .:/app/
+
+        #  redis:
+        #    image: redis:alpine
