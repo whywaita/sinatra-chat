@@ -74,7 +74,3 @@ post '/bbs' do
 
   redirect "/bbs"
 end
-
-get '/user/:name' do |name|
-  "hello, #{name}!"
-end
