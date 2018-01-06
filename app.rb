@@ -67,6 +67,9 @@ end
 
 post '/bbs' do
   now = Time.now.to_s
+  if params[:message] == ""
+    redirect "/bbs"
+  end
 
   CSV.open("resources/bbs_data.csv", "a") do |f|
     f << [request.env["warden"].user[:name], params[:message], now]
