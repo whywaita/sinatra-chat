@@ -5,10 +5,10 @@ services:
     build: .
     ports:
       - "4567:4567"
-        #     depends_on:
-        #       - redis
+    depends_on:
+      - redis
     volumes:
       - .:/app/
 
-        #  redis:
-        #    image: redis:alpine
+  redis:
+    image: redis:alpine

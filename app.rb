@@ -4,9 +4,16 @@ require 'sinatra'
 require 'faml'
 require 'csv'
 require 'warden'
+require 'securerandom'
+require 'digest/sha2'
 
-Encoding.default_external = "UTF-8"
-enable :sessions
+redis = Redis.new host:"redis", port:"6379"
+
+configure do
+  enable :sessions
+  Encoding.default_external = "UTF-8"
+end
+
 
 Warden::Strategies.add :login_test do
   def valid?
@@ -19,6 +26,11 @@ Warden::Strategies.add :login_test do
         :name => params["name"],
         :password => params["password"]
       }
+      token = SecureRandom.hex(20)
+      phrase = params["name"] + token
+      h = Digest::SHA256.hexdigest phrase
+      redis.set("session", h)
+
       success!(user)
     else
       fail!("Could not login")
