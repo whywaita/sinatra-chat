@@ -11,4 +11,4 @@ COPY . /app
 
 EXPOSE 4567
 
-ENTRYPOINT ["ruby", "app.rb"]
+ENTRYPOINT ["rerun", "app.rb"]
