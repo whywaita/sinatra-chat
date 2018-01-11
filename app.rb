@@ -6,12 +6,14 @@ require 'csv'
 require 'warden'
 require 'securerandom'
 require 'digest/sha2'
+require 'redis'
 
-redis = Redis.new host:"redis", port:"6379"
+REDIS = Redis.new host:"redis", port:"6379"
 
 configure do
   enable :sessions
   Encoding.default_external = "UTF-8"
+  set :bind, '0.0.0.0'
 end
 
 
@@ -27,9 +29,10 @@ Warden::Strategies.add :login_test do
         :password => params["password"]
       }
       token = SecureRandom.hex(20)
-      phrase = params["name"] + token
-      h = Digest::SHA256.hexdigest phrase
-      redis.set("session", h)
+      h = Digest::SHA256.hexdigest params["name"]+token
+
+      REDIS.set("session", h)
+      session['login_token'] = token
 
       success!(user)
     else
